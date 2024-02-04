@@ -1,3 +1,5 @@
+'use server';
+
 import styles from '@/app/styles/form.module.css';
 import React from 'react';
 import { Button } from './Button';
