@@ -19,7 +19,7 @@ const Home = async () => {
   return (
     <main className={styles.container}>
       <h1>Home</h1>
-      {data.map((post) => (
+      {data.map((post: { userId: number, id: number, title: string, body: string }) => (
         post.id > 10 ? null :
           <div key={post.id} className={styles.post}>
             <h2 className={styles.title}>{post.title}</h2>
