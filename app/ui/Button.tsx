@@ -1,9 +1,8 @@
-import { create } from "../actions"
+import create from "../actions"
 
-const Button = () => {
+export const Button = () => {
     return (
         <button onClick={create}>Create</button>
     )
 }
 
-export default Button;

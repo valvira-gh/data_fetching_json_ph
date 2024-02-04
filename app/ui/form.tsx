@@ -1,11 +1,10 @@
 import styles from '@/app/styles/form.module.css';
 import React from 'react';
-import Button from './Button';
+import { Button } from './Button';
 
 const Form = () => {
 
     return (
-
         <form className={styles.form}>
             <div className="form-group">
                 <label htmlFor="username">Username: </label>
