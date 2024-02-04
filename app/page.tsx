@@ -1,34 +1,27 @@
 import React from "react";
 import styles from "./page.module.css";
-import axios from "axios";
 
-async function getData() {
-  const res = await axios.get("/api/posts.ts")
-  const data = await res.data;
+export const getData = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
 
-  if (!res) {
-    throw new Error(data.message || "Failed to fetch data");
+  if (!res.ok) {
+    // This will activate the cöpsest error boundary
+    throw new Error("Failed to fetch");
   }
 
-  return { props: { data } };
+  return res.json();
 }
 
-
-const Home = () => {
+const HomePage = () => {
+  const data = await getData();
 
   return (
-    <main className={styles.main}>
-      <h1 className={styles.title}>
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
-      </h1>
-      <p className={styles.description}>
-        Get started by editing <code className={styles.code}>pages/index.tsx</code>
-      </p>
+    <main>
+      <h1>Home</h1>
     </main>
   )
 }
 
-
-
-export default Home;
-
+export default HomePage;
