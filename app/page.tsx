@@ -1,34 +1,34 @@
 import React from "react";
 import styles from "./page.module.css";
+import axios from "axios";
 
 async function getData() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts", { next: { revalidate: 3600 } });
-  const data = await res.json();
+  const res = await axios.get("/api/posts.ts")
+  const data = await res.data;
 
-  if (!res.ok) {
+  if (!res) {
     throw new Error(data.message || "Failed to fetch data");
   }
 
-  return data;
+  return { props: { data } };
 }
 
-const Home = async () => {
-  const data = await getData();
-  console.log(data);
+
+const Home = () => {
 
   return (
-    <main className={styles.container}>
-      <h1>Home</h1>
-      {data.map((post: { userId: number, id: number, title: string, body: string }) => (
-        post.id > 10 ? null :
-          <div key={post.id} className={styles.post}>
-            <h2 className={styles.title}>{post.title}</h2>
-            <p className={styles.body}>{post.body}</p>
-          </div>
-      ))}
+    <main className={styles.main}>
+      <h1 className={styles.title}>
+        Welcome to <a href="https://nextjs.org">Next.js!</a>
+      </h1>
+      <p className={styles.description}>
+        Get started by editing <code className={styles.code}>pages/index.tsx</code>
+      </p>
     </main>
   )
 }
+
+
 
 export default Home;
 

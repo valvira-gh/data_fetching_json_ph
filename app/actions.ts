@@ -18,7 +18,7 @@ export async function getServerSideProps(context: any): Promise<{} | undefined> 
 
 
 export async function getStaticProps(context: any): Promise<{} | undefined> {
-    const res = await axios.get('api/endpoint');
+    const res = await axios.get('api/');
     const data = res.data;
 
     return {
